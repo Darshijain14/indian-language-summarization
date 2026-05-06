@@ -1,5 +1,4 @@
-# indian-language-summarization
-Abstractive Summarization of Indian Languages using Transformers
+
 # Abstractive Summarization of Indian Languages using Transformers
 
 A web application that generates abstractive summaries for Indian language
