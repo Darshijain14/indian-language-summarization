@@ -6,10 +6,12 @@ text using the multilingual mT5 transformer model.
 
 ## Project Demo
 
-<img width="1901" height="897" alt="image" src="https://github.com/user-attachments/assets/699d384c-a7c4-44f9-86ac-07dfae7952d0" />
-<img width="1415" height="875" alt="image" src="https://github.com/user-attachments/assets/31c584f6-1a44-492e-a622-4dc08c3a1cd1" />
-<img width="1885" height="885" alt="image" src="https://github.com/user-attachments/assets/bdc57453-b3a9-4dad-a0ff-dba318df0e69" />
-<img width="1801" height="858" alt="image" src="https://github.com/user-attachments/assets/7944383e-20f5-4518-a40b-bdc951882b55" />
+<img width="1892" height="902" alt="image" src="https://github.com/user-attachments/assets/ea1a2f34-fc48-4a96-9ab8-545e144e2e28" />
+<img width="1851" height="880" alt="image" src="https://github.com/user-attachments/assets/4dbc3790-2a48-46a2-89b5-2905f341792d" />
+
+
+
+
 
 
 
