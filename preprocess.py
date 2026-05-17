@@ -1,5 +1,5 @@
 # src/preprocess.py
-# PURPOSE: Load dataset, clean it, split it, and tokenize for mT5
+
 
 import pandas as pd
 import sys
@@ -9,7 +9,7 @@ from transformers import AutoTokenizer
 from torch.utils.data import Dataset
 import torch
 
-# Add parent directory to path so train.py can import this file
+# Adding parent directory to path so train.py can import this file
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 MODEL_NAME  = "google/mt5-small"
@@ -89,7 +89,7 @@ class SummarizationDataset(Dataset):
             'labels':         labels
         }
 
-# Quick test when you run this file directly
+
 if __name__ == '__main__':
     tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
     df = load_and_clean_data()
