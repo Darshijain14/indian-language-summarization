@@ -4,8 +4,7 @@ import re
 import torch
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
-# This is a pre-trained model already fine-tuned for summarization
-# No additional training needed — works immediately
+
 PRETRAINED_MODEL = "csebuetnlp/mT5_multilingual_XLSum"
 
 class Summarizer:
