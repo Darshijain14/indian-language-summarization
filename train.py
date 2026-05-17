@@ -1,12 +1,11 @@
 # src/train.py
-# PURPOSE: Fine-tune mT5-small on your Indian language dataset
-# HOW TO RUN: Open CMD in project root → python src/train.py
+
 
 import os
 import sys
 import torch
 
-# Fix Windows path issue so preprocess can be imported
+# Fixing Windows path issue so preprocess can be imported
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from transformers import (
@@ -19,7 +18,7 @@ from transformers import (
 )
 from preprocess import load_and_clean_data, split_data, SummarizationDataset
 
-# ── Config ─────────────────────────────────────────────────────
+#  Config 
 MODEL_NAME  = "google/mt5-small"
 OUTPUT_DIR  = os.path.join(os.path.dirname(__file__), '..', 'model', 'mt5_summarizer')
 DATA_PATH   = os.path.join(os.path.dirname(__file__), '..', 'data', 'dataset.csv')
@@ -31,13 +30,13 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"Device: {device.upper()}")
 print(f"Output will be saved to: {os.path.abspath(OUTPUT_DIR)}")
 
-# ── Load model ─────────────────────────────────────────────────
+# Loading model
 print("Downloading/loading mT5-small (first run downloads ~1.2GB)...")
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
 model     = AutoModelForSeq2SeqLM.from_pretrained(MODEL_NAME)
 model.to(device)
 
-# ── Load data ──────────────────────────────────────────────────
+# Loading data 
 df = load_and_clean_data(DATA_PATH)
 train_df, val_df, test_df = split_data(df)
 
@@ -52,7 +51,7 @@ val_ds   = SummarizationDataset(val_df,   tokenizer)
 
 data_collator = DataCollatorForSeq2Seq(tokenizer, model=model, padding=True)
 
-# ── Training arguments ─────────────────────────────────────────
+# Training arguments 
 args = Seq2SeqTrainingArguments(
     output_dir                  = OUTPUT_DIR,
     num_train_epochs            = EPOCHS,
@@ -73,7 +72,7 @@ args = Seq2SeqTrainingArguments(
     dataloader_num_workers      = 0,       # Required on Windows (avoid multiprocessing errors)
 )
 
-# ── Trainer ────────────────────────────────────────────────────
+#  Trainer 
 trainer = Seq2SeqTrainer(
     model         = model,
     args          = args,
@@ -84,11 +83,11 @@ trainer = Seq2SeqTrainer(
     callbacks     = [EarlyStoppingCallback(early_stopping_patience=2)]
 )
 
-# ── Train ──────────────────────────────────────────────────────
+#  Train 
 print("Starting training... (this will take 30-60 min on CPU)")
 trainer.train()
 
-# ── Save ───────────────────────────────────────────────────────
+# Save 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 model.save_pretrained(OUTPUT_DIR)
 tokenizer.save_pretrained(OUTPUT_DIR)
